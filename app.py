@@ -106,7 +106,7 @@ if daily_file and branch_file and mobile_file:
     TW.drop_duplicates('ClientID', keep='first', inplace=True)
 
     # Read Branch
-    branch = pd.read_excel(branch_file)
+    branch = pd.read_excel(branch_file, engine="openpyxl")
     branch.columns = branch.columns.str.strip()
     branch['OurBranchID'] = branch['OurBranchID'].astype(str).str.zfill(4)
     branch.rename({'OurBranchID':'BranchID'}, inplace=True, axis=1)
@@ -196,3 +196,4 @@ if daily_file and branch_file and mobile_file:
 
 else:
     st.info("📌 Please upload all required files to process the data.")
+
